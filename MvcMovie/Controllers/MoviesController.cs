@@ -19,11 +19,20 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string id)
         {
-            return View(await _context.Movie.ToListAsync());
+            var movies = from m in _context.Movie //Creates a LINQ query
+                         select m;
+            if (!string.IsNullOrEmpty(id))
+            {
+                movies = movies.Where(s => s.Title.Contains(id));
+                /*Lambda Expression. Lambdas are used in method-based LINQ queries
+                 * as arguments to standard query operator methods such as the Where 
+                 * method or Contains */
+            }
+            //return View(await _context.Movie.ToListAsync());
+            return View(await movies.ToListAsync());
         }
-
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -31,7 +40,6 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-
             var movie = await _context.Movie
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (movie == null)
@@ -41,7 +49,6 @@ namespace MvcMovie.Controllers
 
             return View(movie);
         }
-
         // GET: Movies/Create
         public IActionResult Create()
         {
