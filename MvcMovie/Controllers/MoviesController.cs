@@ -19,13 +19,13 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index(string id)
+        public async Task<IActionResult> Index(string searchString)
         {
             var movies = from m in _context.Movie //Creates a LINQ query
                          select m;
-            if (!string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(searchString))
             {
-                movies = movies.Where(s => s.Title.Contains(id));
+                movies = movies.Where(s => s.Title.Contains(searchString));
                 /*Lambda Expression. Lambdas are used in method-based LINQ queries
                  * as arguments to standard query operator methods such as the Where 
                  * method or Contains */
@@ -150,6 +150,12 @@ namespace MvcMovie.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        /*[HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }*/
 
         private bool MovieExists(int id)
         {
