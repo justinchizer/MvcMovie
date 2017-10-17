@@ -24,6 +24,7 @@ namespace MvcMovie.Models
                          Title = "Ocean's Eleven",
                          ReleaseDate = DateTime.Parse("2001-12-7"),
                          Genre = "Thriller",
+                         Rating = "PG-13",
                          Price = 2.99M
                      },
 
@@ -32,6 +33,7 @@ namespace MvcMovie.Models
                          Title = "The Bourne Identity",
                          ReleaseDate = DateTime.Parse("2002-6-14"),
                          Genre = "Action",
+                         Rating = "PG-13",
                          Price = 2.99M
                      },
 
@@ -40,6 +42,7 @@ namespace MvcMovie.Models
                          Title = "The Dark Knight",
                          ReleaseDate = DateTime.Parse("2008-7-18"),
                          Genre = "Action",
+                         Rating = "PG-13",
                          Price = 2.99M
                      },
 
@@ -48,6 +51,7 @@ namespace MvcMovie.Models
                        Title = "Inception",
                        ReleaseDate = DateTime.Parse("2010-7-16"),
                        Genre = "Action",
+                       Rating = "PG-13",
                        Price = 2.99M
                    }
                 );
